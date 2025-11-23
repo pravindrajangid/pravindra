@@ -1,4 +1,3 @@
-// Program 11: Queue using circular array
 #include <iostream>
 using namespace std;
 const int MAXNQ = 100;
