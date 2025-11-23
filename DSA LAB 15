@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+struct Node{ int data; Node* next; Node(int v):data(v),next(nullptr){} };
+
+void print(Node* head){ for(Node* p=head;p;p=p->next) cout<<p->data<<" "; cout<<"\n"; }
+
+int main(){
+    Node* head=nullptr;
+    int choice, val, pos;
+    while(true){
+        cout<<"\n1.InsertEnd 2.DeleteByValue 3.DeleteByPos 4.Display 5.Exit\nChoice: "; cin>>choice;
+        if(choice==1){
+            cout<<"Value: "; cin>>val; Node* n=new Node(val);
+            if(!head) head=n; else { Node* p=head; while(p->next) p=p->next; p->next=n; }
+        } else if(choice==2){
+            cout<<"Value: "; cin>>val;
+            Node* p=head; Node* prev=nullptr;
+            while(p && p->data!=val){ prev=p; p=p->next; }
+            if(!p) cout<<"Not found\n"; else {
+                if(!prev) head=head->next; else prev->next=p->next;
+                delete p; cout<<"Deleted\n";
+            }
+        } else if(choice==3){
+            cout<<"Position(0-based): "; cin>>pos;
+            Node* p=head; Node* prev=nullptr; int i=0;
+            while(p && i<pos){ prev=p; p=p->next; i++; }
+            if(!p) cout<<"Position out of range\n"; else {
+                if(!prev) head=head->next; else prev->next=p->next;
+                delete p; cout<<"Deleted\n";
+            }
+        } else if(choice==4){ if(!head) cout<<"Empty\n"; else print(head); }
+        else break;
+    }
+    while(head){ Node* t=head; head=head->next; delete t; }
+    return 0;
+}
