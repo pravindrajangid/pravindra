@@ -1,0 +1,59 @@
+// Program 3: Insert, Delete & Traverse in 1-D Array (Modified Version)
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[100];
+    int n, pos, value;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter " << n << " elements:\n";
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    // Traversing
+    cout << "\nCurrent Array: ";
+    for(int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    // Insertion
+    cout << "\n\nEnter position to insert (0 to " << n << "): ";
+    cin >> pos;
+    cout << "Enter value to insert: ";
+    cin >> value;
+
+    if(pos >= 0 && pos <= n) {
+        for(int i = n; i > pos; i--) {
+            arr[i] = arr[i - 1];
+        }
+        arr[pos] = value;
+        n++;
+    } else {
+        cout << "Invalid position!\n";
+    }
+
+    cout << "\nArray after insertion: ";
+    for(int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    // Deletion
+    cout << "\n\nEnter position to delete (0 to " << n-1 << "): ";
+    cin >> pos;
+
+    if(pos >= 0 && pos < n) {
+        for(int i = pos; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        n--;
+    } else {
+        cout << "Invalid position!\n";
+    }
+
+    cout << "\nArray after deletion: ";
+    for(int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    return 0;
+}
