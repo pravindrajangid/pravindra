@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+struct Node{ int data; Node* next; Node(int v):data(v),next(nullptr){} };
+
+int main(){
+    Node* top = nullptr;
+    int choice, val;
+    while(true){
+        cout<<"\n1.Push 2.Pop 3.Peek 4.Display 5.Exit\nChoice: "; cin>>choice;
+        if(choice==1){ cout<<"Value: "; cin>>val; Node* n=new Node(val); n->next=top; top=n; }
+        else if(choice==2){
+            if(!top) cout<<"Underflow\n";
+            else { cout<<"Popped "<<top->data<<"\n"; Node* t=top; top=top->next; delete t; }
+        } else if(choice==3){ if(!top) cout<<"Empty\n"; else cout<<"Top = "<<top->data<<"\n"; }
+        else if(choice==4){
+            if(!top) cout<<"Empty\n"; else { cout<<"Stack: "; for(Node* p=top;p;p=p->next) cout<<p->data<<" "; cout<<"\n"; }
+        } else break;
+    }
+    // cleanup
+    while(top){ Node* t=top; top=top->next; delete t; }
+    return 0;
+}
