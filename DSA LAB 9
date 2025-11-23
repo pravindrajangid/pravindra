@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+const int MAXN = 100;
+
+int main(){
+    int stackA[MAXN], top=-1, choice, val;
+    while(true){
+        cout<<"\n1.Push 2.Pop 3.Peek 4.Display 5.Exit\nChoice: "; cin>>choice;
+        if(choice==1){
+            if(top==MAXN-1) cout<<"Overflow\n";
+            else{ cout<<"Value: "; cin>>val; stackA[++top]=val; }
+        } else if(choice==2){
+            if(top==-1) cout<<"Underflow\n"; else cout<<"Popped "<<stackA[top--]<<"\n";
+        } else if(choice==3){
+            if(top==-1) cout<<"Empty\n"; else cout<<"Top = "<<stackA[top]<<"\n";
+        } else if(choice==4){
+            if(top==-1) cout<<"Empty\n"; else{ cout<<"Stack: ";
+                for(int i=top;i>=0;i--) cout<<stackA[i]<<" "; cout<<"\n";
+            }
+        } else break;
+    }
+    return 0;
+}
